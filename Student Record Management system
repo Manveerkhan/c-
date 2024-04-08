@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+struct Student {
+    string name;
+    int rollNumber;
+    float marks;
+};
+
+void addStudent(vector<Student> &students) {
+    Student newStudent;
+    cout <<"Enter name:";
+    cin>>newStudent.name;
+    cout<<"Enter roll number:";
+    cin>>newStudent.rollNumber;
+    cout<<"Enter marks:";
+    cin>>newStudent.marks;
+    students.push_back(newStudent);
+    cout<<"Student added successfully!"<<endl;
+}
+
+void displayStudents(const vector<Student> &students) {
+    if (students.empty()) {
+        cout<<"No students records found."<<endl;
+        return;
+    }
+    cout<<"Name\tRoll Number\tMarks"<<endl;
+    for (const auto &student : students) {
+        cout<<student.name<<"\t"<<student.rollNumber<<"\t\t"<<student.marks<<endl;
+    }
+}
+
+int main() {
+    vector<Student>students;
+    int choice;
+    
+    do {
+        cout<<"\nStudent Record Management System"<<endl;
+        cout<<"1. Add Student\n2. Display Students\n3. Exit\n";
+        cout<<"Enter your choice:";
+        cin>>choice;
+        
+        switch(choice) {
+            case 1:
+                addStudent(students);
+                break;
+            case 2:
+                displayStudents(students);
+                break;
+            case 3:
+                cout<<"Exiting program."<<endl;
+                break;
+            default:
+                cout<<"Invalid choice. Please try again."<<endl;
+        }
+    } while(choice != 3);
+    
+    return 0;
+}
